@@ -17,7 +17,7 @@ public class RiotApiRepository {
     @Autowired
     MongoTemplate mongoTemplate;
 
-    public void insertStoredLeague(String summonerId) {
+    public void insertStoredLeague(SetOfLeagueEntryDTO summonerId) {
         mongoTemplate.insert(summonerId);
     }
 
