@@ -42,7 +42,7 @@ public class RiotOpenApiClient {
         return this.restTemplate.exchange(RealUrl, HttpMethod.GET, null, SummonerDTO.class, this.getOpenRiotApiKey()).getBody();
     }
 
-    public List<LeagueEntryDTO> requestLeagueByEncryptedId(String id) {
+    public List<LeagueEntryDTO> requestLeagueEntryDTOListByEncryptedId(String id) {
         String RealUrl = this.openLeagueUrl + id + this.requestParam;
         return this.restTemplate.exchange(RealUrl,HttpMethod.GET, null, new ParameterizedTypeReference<List<LeagueEntryDTO>>() {}, this.getOpenRiotApiKey()).getBody();
     }

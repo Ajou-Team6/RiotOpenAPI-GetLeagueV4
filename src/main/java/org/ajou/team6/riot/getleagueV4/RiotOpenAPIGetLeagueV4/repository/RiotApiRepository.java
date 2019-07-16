@@ -17,8 +17,8 @@ public class RiotApiRepository {
     @Autowired
     MongoTemplate mongoTemplate;
 
-    public void insertStoredLeague(SetOfLeagueEntryDTO League) {
-        mongoTemplate.insert(League);
+    public void insertStoredLeague(SetOfLeagueEntryDTO leagueEntryDTOList) {
+        mongoTemplate.insert(leagueEntryDTOList);
 
     }
 
@@ -27,12 +27,12 @@ public class RiotApiRepository {
         return mongoTemplate.findOne(query, SetOfLeagueEntryDTO.class);
     }
 
-    public SetOfLeagueEntryDTO updateStoredLeague(List<LeagueEntryDTO> league, String summonerId) {
+    public SetOfLeagueEntryDTO updateStoredLeague(List<LeagueEntryDTO> leagueEntryDTOList, String summonerId) {
         Criteria criteria = new Criteria("summonerId");
         criteria.is(summonerId);
         Query query = new Query(criteria);
         Update update = new Update();
-        update.set("leagueEntryDTOList", league);
+        update.set("leagueEntryDTOList", leagueEntryDTOList);
         mongoTemplate.updateFirst(query, update, "setOfLeagueEntryDTO");
         return mongoTemplate.findOne(query, SetOfLeagueEntryDTO.class);
     }
