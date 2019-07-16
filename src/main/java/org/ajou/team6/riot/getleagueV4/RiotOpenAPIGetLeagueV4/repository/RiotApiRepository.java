@@ -32,7 +32,6 @@ public class RiotApiRepository {
 
         criteria.is(summonerId);
 
-
         Query query = new Query(criteria);
 
         Update update = new Update();
