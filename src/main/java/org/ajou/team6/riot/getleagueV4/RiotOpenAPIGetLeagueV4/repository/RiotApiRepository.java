@@ -17,7 +17,6 @@ public class RiotApiRepository {
     @Autowired
     MongoTemplate mongoTemplate;
 
-
     public void insertStoredLeague(SetOfLeagueEntryDTO League) {
         mongoTemplate.insert(League);
     }
@@ -37,9 +36,9 @@ public class RiotApiRepository {
 
         Update update = new Update();
 
-        update.set("league", league);
+        update.set("leagueEntryDTOList", league);
 
-        mongoTemplate.updateFirst(query, update, "StoredLeague");
+        mongoTemplate.updateFirst(query, update, "setOfLeagueEntryDTO");
 
         return mongoTemplate.findOne(query, SetOfLeagueEntryDTO.class);
 
