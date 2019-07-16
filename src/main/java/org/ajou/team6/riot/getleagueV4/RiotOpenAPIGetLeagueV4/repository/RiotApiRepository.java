@@ -17,6 +17,7 @@ public class RiotApiRepository {
     @Autowired
     MongoTemplate mongoTemplate;
 
+
     public void insertStoredLeague(SetOfLeagueEntryDTO League) {
         mongoTemplate.insert(League);
     }
