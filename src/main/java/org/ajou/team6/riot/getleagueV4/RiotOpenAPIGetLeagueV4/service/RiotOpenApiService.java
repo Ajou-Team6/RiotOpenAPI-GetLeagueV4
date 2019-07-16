@@ -24,16 +24,17 @@ public class RiotOpenApiService {
     @Autowired
     MongoTemplate mongoTemplate;
 
-    public List<LeagueEntryDTO> getLeagueEntryDTOList(String summonerId){
+    public List<LeagueEntryDTO> getLeagueEntryDTOList(String summonerId) {
         SetOfLeagueEntryDTO leagueEntryDTOList = new SetOfLeagueEntryDTO();
         leagueEntryDTOList.setSummonerId(summonerId);
         leagueEntryDTOList.setLeagueEntryDTOList(riotOpenApiClient.requestLeagueByEncryptedId(summonerId));
 
-        if(riotApiRepository.findCurrentUserInfo(summonerId)==null){
+        if (riotApiRepository.findCurrentUserInfo(summonerId) == null) {
             riotApiRepository.insertStoredLeague(leagueEntryDTOList);
-        }
-        else{
+            log.info("LeagueEntryDTOList has been inserted successfully: " + summonerId);
+        } else {
             riotApiRepository.updateStoredLeague(leagueEntryDTOList.getLeagueEntryDTOList(), summonerId);
+            log.info("LeagueEntryDTOList has been updated successfully: " + summonerId);
         }
         return leagueEntryDTOList.getLeagueEntryDTOList();
     }
