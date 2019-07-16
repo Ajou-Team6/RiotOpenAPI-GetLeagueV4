@@ -25,24 +25,24 @@ public class RiotApiRepository {
         Query query = Query.query(Criteria.where("summonerId").is(summonerId));
         return mongoTemplate.findOne(query, StoredLeague.class);
     }
-//
-//    public StoredLeague updateStoredLeague(List<LeagueEntryDTO> league, String summonerId) {
-//
-//        Criteria criteria = new Criteria("summonerId");
-//
-//        criteria.is(summonerId);
-//
-//
-//        Query query = new Query(criteria);
-//
-//        Update update = new Update();
-//
-//        update.set("league", league);
-//
-//        mongoTemplate.updateFirst(query, update, "StoredLeague");
-//
-//        return mongoTemplate.findOne(query, StoredLeague.class);
-//
-//    }
+
+    public StoredLeague updateStoredLeague(List<LeagueEntryDTO> league, String summonerId) {
+
+        Criteria criteria = new Criteria("summonerId");
+
+        criteria.is(summonerId);
+
+
+        Query query = new Query(criteria);
+
+        Update update = new Update();
+
+        update.set("league", league);
+
+        mongoTemplate.updateFirst(query, update, "StoredLeague");
+
+        return mongoTemplate.findOne(query, StoredLeague.class);
+
+    }
 
 }
