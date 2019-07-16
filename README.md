@@ -22,6 +22,10 @@ mvn clean install
 ````
 ### 3. Make key File
 You must create a key file that contains the Riot Open API key in `RiotOpenAPI-GetLeagueV4`.
+```
+cd RiotOpenAPI-GetLeagueV4
+echo {Key_Value} > key
+```
 ### 4. Start Spring Framework
 Port Number: 8081
 
@@ -29,3 +33,8 @@ Port Number: 8081
 
 ## DevOps
 JAVA Spring Boot, Maven, Jenkins, IntelliJ
+
+## Open Source SW Lists
+- `Lombok`
+- `Spring Framework`
+- `Swagger`
