@@ -28,21 +28,13 @@ public class RiotApiRepository {
     }
 
     public SetOfLeagueEntryDTO updateStoredLeague(List<LeagueEntryDTO> league, String summonerId) {
-
         Criteria criteria = new Criteria("summonerId");
-
         criteria.is(summonerId);
-
         Query query = new Query(criteria);
-
         Update update = new Update();
-
         update.set("leagueEntryDTOList", league);
-
         mongoTemplate.updateFirst(query, update, "setOfLeagueEntryDTO");
-
         return mongoTemplate.findOne(query, SetOfLeagueEntryDTO.class);
-
     }
 
 }

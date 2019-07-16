@@ -25,7 +25,7 @@ public class RiotOpenApiClient {
 
     public void loadOpenRiotApiKey() {
         try {
-            key = new String ( Files.readAllBytes( Paths.get("key") ) );
+            this.key = new String ( Files.readAllBytes( Paths.get("key") ) );
         }
         catch (IOException e) {
             this.key = null;
@@ -37,14 +37,14 @@ public class RiotOpenApiClient {
     }
 
     public SummonerDTO requestEncryptedSummonerIdByName(String userName) {
-        if(key == null) loadOpenRiotApiKey();
-        String RealUrl = openEncryptedIdUrl + userName + requestParam;
-        return restTemplate.exchange(RealUrl, HttpMethod.GET, null, SummonerDTO.class, getOpenRiotApiKey()).getBody();
+        if(this.key == null) loadOpenRiotApiKey();
+        String RealUrl = this.openEncryptedIdUrl + userName + this.requestParam;
+        return this.restTemplate.exchange(RealUrl, HttpMethod.GET, null, SummonerDTO.class, this.getOpenRiotApiKey()).getBody();
     }
 
     public List<LeagueEntryDTO> requestLeagueByEncryptedId(String id) {
-        String RealUrl = openLeagueUrl + id + requestParam;
-        return restTemplate.exchange(RealUrl,HttpMethod.GET, null, new ParameterizedTypeReference<List<LeagueEntryDTO>>() {}, getOpenRiotApiKey()).getBody();
+        String RealUrl = this.openLeagueUrl + id + this.requestParam;
+        return this.restTemplate.exchange(RealUrl,HttpMethod.GET, null, new ParameterizedTypeReference<List<LeagueEntryDTO>>() {}, this.getOpenRiotApiKey()).getBody();
     }
 
 }
