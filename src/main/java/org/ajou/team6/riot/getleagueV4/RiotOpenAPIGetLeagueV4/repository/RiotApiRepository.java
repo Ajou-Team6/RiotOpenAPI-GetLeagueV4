@@ -1,6 +1,7 @@
 package org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.repository;
 
 import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.domain.LeagueEntryDTO;
+import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.domain.SetOfLeagueEntryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -20,12 +21,12 @@ public class RiotApiRepository {
         mongoTemplate.insert(summonerId);
     }
 
-    public StoredLeague findCurrentUserInfo(String summonerId) {
+    public SetOfLeagueEntryDTO findCurrentUserInfo(String summonerId) {
         Query query = Query.query(Criteria.where("summonerId").is(summonerId));
-        return mongoTemplate.findOne(query, StoredLeague.class);
+        return mongoTemplate.findOne(query, SetOfLeagueEntryDTO.class);
     }
 
-    public StoredLeague updateStoredLeague(List<LeagueEntryDTO> league, String summonerId) {
+    public SetOfLeagueEntryDTO updateStoredLeague(List<LeagueEntryDTO> league, String summonerId) {
 
         Criteria criteria = new Criteria("summonerId");
 
@@ -40,7 +41,7 @@ public class RiotApiRepository {
 
         mongoTemplate.updateFirst(query, update, "StoredLeague");
 
-        return mongoTemplate.findOne(query, StoredLeague.class);
+        return mongoTemplate.findOne(query, SetOfLeagueEntryDTO.class);
 
     }
 
