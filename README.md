@@ -21,8 +21,9 @@ git clone https://github.com/Ajou-Team6/RiotOpenAPI-GetLeagueV4.git
 mvn clean install
 ````
 ### 3. Make key File
-You should make file named key contained Riot Open API key on `RiotOpenAPI-GetLeagueV4`
+You must create a key file that contains the Riot Open API key in `RiotOpenAPI-GetLeagueV4`.
 ### 4. Start Spring Framework
+Port Number: 8081
 
 <br>
 

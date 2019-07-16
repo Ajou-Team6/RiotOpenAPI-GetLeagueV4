@@ -17,8 +17,9 @@ public class RiotApiRepository {
     @Autowired
     MongoTemplate mongoTemplate;
 
-    public void insertStoredLeague(SetOfLeagueEntryDTO summonerId) {
-        mongoTemplate.insert(summonerId);
+
+    public void insertStoredLeague(SetOfLeagueEntryDTO League) {
+        mongoTemplate.insert(League);
     }
 
     public SetOfLeagueEntryDTO findCurrentUserInfo(String summonerId) {
@@ -31,7 +32,6 @@ public class RiotApiRepository {
         Criteria criteria = new Criteria("summonerId");
 
         criteria.is(summonerId);
-
 
         Query query = new Query(criteria);
 
