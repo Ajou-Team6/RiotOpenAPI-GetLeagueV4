@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.api.RiotOpenApiClient;
 import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.domain.LeagueEntryDTO;
+import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.domain.SetOfLeagueEntryDTO;
 import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.repository.RiotApiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -24,13 +25,16 @@ public class RiotOpenApiService {
     MongoTemplate mongoTemplate;
 
     public List<LeagueEntryDTO> getLeagueEntryDTOList(String summonerId){
-        List<LeagueEntryDTO> leagueEntryDTOList = riotOpenApiClient.requestLeagueByEncryptedId(summonerId);
+        SetOfLeagueEntryDTO leagueEntryDTOList = new SetOfLeagueEntryDTO();
+        leagueEntryDTOList.setSummonerId(summonerId);
+        leagueEntryDTOList.setLeagueEntryDTOList(riotOpenApiClient.requestLeagueByEncryptedId(summonerId));
+
         if(riotApiRepository.findCurrentUserInfo(summonerId)==null){
-            riotApiRepository.insertStoredLeague(summonerId);
+            riotApiRepository.insertStoredLeague(leagueEntryDTOList);
         }
         else{
-            riotApiRepository.updateStoredLeague(leagueEntryDTOList, summonerId);
+            riotApiRepository.updateStoredLeague(leagueEntryDTOList.getLeagueEntryDTOList(), summonerId);
         }
-        return leagueEntryDTOList;
+        return leagueEntryDTOList.getLeagueEntryDTOList();
     }
 }

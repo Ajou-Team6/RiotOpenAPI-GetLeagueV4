@@ -19,6 +19,7 @@ public class RiotApiRepository {
 
     public void insertStoredLeague(SetOfLeagueEntryDTO League) {
         mongoTemplate.insert(League);
+
     }
 
     public SetOfLeagueEntryDTO findCurrentUserInfo(String summonerId) {
