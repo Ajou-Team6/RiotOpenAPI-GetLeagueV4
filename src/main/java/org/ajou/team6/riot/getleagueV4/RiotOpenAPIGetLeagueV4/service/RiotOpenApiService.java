@@ -27,7 +27,7 @@ public class RiotOpenApiService {
     public List<LeagueEntryDTO> getLeagueEntryDTOList(String summonerId) {
         SetOfLeagueEntryDTO leagueEntryDTOList = new SetOfLeagueEntryDTO();
         leagueEntryDTOList.setSummonerId(summonerId);
-        leagueEntryDTOList.setLeagueEntryDTOList(riotOpenApiClient.requestLeagueByEncryptedId(summonerId));
+        leagueEntryDTOList.setLeagueEntryDTOList(riotOpenApiClient.requestLeagueEntryDTOListByEncryptedId(summonerId));
 
         if (riotApiRepository.findCurrentUserInfo(summonerId) == null) {
             riotApiRepository.insertStoredLeague(leagueEntryDTOList);

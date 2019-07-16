@@ -21,7 +21,7 @@ public class RiotApiController {
 
     @GetMapping ("/riotopenapi/by-summoner-name/{summonerName}")
     public List<LeagueEntryDTO> getLeagueEntryDTOList(@PathVariable String summonerName) {
-        String encryptedSummonerId = riotOpenApiClient.requestEncryptedSummonerIdByName(summonerName).getId();
-        return riotOpenApiService.getLeagueEntryDTOList(encryptedSummonerId);
+        String encryptedId = riotOpenApiClient.requestEncryptedSummonerIdBySummonerName(summonerName).getId();
+        return riotOpenApiService.getLeagueEntryDTOList(encryptedId);
     }
 }

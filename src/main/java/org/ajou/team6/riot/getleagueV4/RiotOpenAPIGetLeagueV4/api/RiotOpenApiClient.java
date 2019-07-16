@@ -36,13 +36,13 @@ public class RiotOpenApiClient {
         return this.key;
     }
 
-    public SummonerDTO requestEncryptedSummonerIdByName(String userName) {
+    public SummonerDTO requestEncryptedSummonerIdBySummonerName(String summonerName) {
         if(this.key == null) loadOpenRiotApiKey();
-        String RealUrl = this.openEncryptedIdUrl + userName + this.requestParam;
+        String RealUrl = this.openEncryptedIdUrl + summonerName + this.requestParam;
         return this.restTemplate.exchange(RealUrl, HttpMethod.GET, null, SummonerDTO.class, this.getOpenRiotApiKey()).getBody();
     }
 
-    public List<LeagueEntryDTO> requestLeagueByEncryptedId(String id) {
+    public List<LeagueEntryDTO> requestLeagueEntryDTOListByEncryptedId(String id) {
         String RealUrl = this.openLeagueUrl + id + this.requestParam;
         return this.restTemplate.exchange(RealUrl,HttpMethod.GET, null, new ParameterizedTypeReference<List<LeagueEntryDTO>>() {}, this.getOpenRiotApiKey()).getBody();
     }
