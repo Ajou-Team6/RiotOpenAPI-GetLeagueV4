@@ -26,7 +26,7 @@ public class RiotOpenApiService {
                 .leagueEntryDTOList(riotOpenApiClient.requestLeagueEntryDTOListByEncryptedId(id))
                 .build();
         riotApiRepository.saveSetOfLeagueEntryDTO(leagueEntryDTOList);
-
+        log.info("League Positions has been upserted successfully: " + summonerName);
         return leagueEntryDTOList.getLeagueEntryDTOList();
     }
 }
