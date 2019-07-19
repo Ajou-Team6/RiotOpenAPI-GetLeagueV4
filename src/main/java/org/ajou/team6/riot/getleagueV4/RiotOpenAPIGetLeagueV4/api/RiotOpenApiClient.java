@@ -1,6 +1,6 @@
 package org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.api;
 
-import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.domain.LeagueEntryDTO;
+import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.domain.LeaguePosition;
 import org.ajou.team6.riot.getleagueV4.RiotOpenAPIGetLeagueV4.domain.SummonerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -42,9 +42,9 @@ public class RiotOpenApiClient {
         return this.restTemplate.exchange(RealUrl, HttpMethod.GET, null, SummonerDTO.class, this.getOpenRiotApiKey()).getBody();
     }
 
-    public List<LeagueEntryDTO> requestLeagueEntryDTOListByEncryptedId(String encryptedId) {
+    public List<LeaguePosition.LeagueEntryDTO> requestLeagueEntryDTOListByEncryptedId(String encryptedId) {
         String RealUrl = this.openLeagueUrl + encryptedId + this.requestParam;
-        return this.restTemplate.exchange(RealUrl,HttpMethod.GET, null, new ParameterizedTypeReference<List<LeagueEntryDTO>>() {}, this.getOpenRiotApiKey()).getBody();
+        return this.restTemplate.exchange(RealUrl,HttpMethod.GET, null, new ParameterizedTypeReference<List<LeaguePosition.LeagueEntryDTO>>() {}, this.getOpenRiotApiKey()).getBody();
     }
 
 }
