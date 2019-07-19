@@ -11,15 +11,40 @@ public class LeaguePosition {
     private CompositeKey id;
     private LeagueEntryDTO leagueEntryDTO;
 
+    @Value
+    static class CompositeKey {
+        private String summonerName;
+        private String queueType;
+    }
+
     public LeaguePosition(LeagueEntryDTO leagueEntry) {
         id = new CompositeKey(leagueEntry.getSummonerName(), leagueEntry.getQueueType());
         leagueEntryDTO = leagueEntry;
     }
 
-    @Value
-    static class CompositeKey {
-        private String summonerName;
+    @Data
+    public static class LeagueEntryDTO {
         private String queueType;
+        private String summonerName;
+        private boolean hotStreak;
+        private int wins;
+        private boolean veteran;
+        private int losses;
+        private String rank;
+        private String tier;
+        private boolean inactive;
+        private boolean freshBlood;
+        private String leagueId;
+        private String summonerId;
+        private int leaguePoints;
+
+        @Data
+        public static class MiniSeries{
+            private int losses;
+            private String progress;
+            private int target;
+            private int wins;
+        }
     }
 
 }
